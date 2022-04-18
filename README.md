@@ -8,7 +8,7 @@
 
 **use callbacks**
 
-```
+```JavaScript
 window.plugins.YandexAdsBanner.init({
     "onSuccess":function(){
         window.plugins.YandexAdsBanner.load({
@@ -23,7 +23,7 @@ window.plugins.YandexAdsBanner.init({
 
 **or window events**
 
-```
+```JavaScript
 window.plugins.YandexAdsBanner.init();
 $(window).on("YandexAds:init",function(){
     window.plugins.YandexAdsBanner.load({
