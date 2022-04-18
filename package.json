@@ -1,0 +1,33 @@
+{
+  "name": "cordova-plugin-zhl-yandexrsa",
+  "version": "1.0.0",
+  "description": "Show yandex rsa adv.",
+  "cordova": {
+    "id": "cordova-plugin-zhl-yandexrsa",
+    "platforms": [
+      "ios",
+      "android"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zahalski/cordova.plugin.zhl.yandexrsa.git"
+  },
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-ios",
+    "cordova-android"
+  ],
+  "engines": [
+    {
+      "name": "cordova",
+      "version": ">=10.0.0"
+    }
+  ],
+  "author": "Andrew Zahalski <info@zahalski.dev> (https://zahalski.dev/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zahalski/cordova.plugin.zhl.yandexrsa/issues"
+  },
+  "homepage": "https://github.com/zahalski/cordova.plugin.zhl.yandexrsa#readme"
+}
