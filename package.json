@@ -1,9 +1,9 @@
 {
-  "name": "cordova-plugin-zhl-yandexrsa",
-  "version": "1.0.0",
+  "name": "cordova-plugin-zhl-yandex-ads-banner",
+  "version": "1.0.1",
   "description": "Show yandex rsa adv.",
   "cordova": {
-    "id": "cordova-plugin-zhl-yandexrsa",
+    "id": "cordova-plugin-zhl-yandex-ads-banner",
     "platforms": [
       "ios",
       "android"
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zahalski/cordova.plugin.zhl.yandexrsa.git"
+    "url": "git+https://github.com/zahalski/cordova-plugin-zhl-yandex-ads-banner.git"
   },
   "keywords": [
     "ecosystem:cordova",
@@ -27,7 +27,7 @@
   "author": "Andrew Zahalski <info@zahalski.dev> (https://zahalski.dev/)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/zahalski/cordova.plugin.zhl.yandexrsa/issues"
+    "url": "https://github.com/zahalski/cordova-plugin-zhl-yandex-ads-banner/issues"
   },
-  "homepage": "https://github.com/zahalski/cordova.plugin.zhl.yandexrsa#readme"
+  "homepage": "https://github.com/zahalski/cordova-plugin-zhl-yandex-ads-banner#readme"
 }
