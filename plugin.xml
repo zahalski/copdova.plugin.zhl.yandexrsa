@@ -2,7 +2,7 @@
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
         xmlns:android="http://schemas.android.com/apk/res/android"
         id="cordova-plugin-zhl-yandex-ads-banner"
-        version="1.0.1">
+        version="1.0.2">
 
     <name>YandexRsa</name>
 
@@ -13,7 +13,7 @@
     <license>MIT</license>
 
     <engines>
-        <engine name="cordova" version=">=10.0.0"/>
+        <engine name="cordova" version=">=12.0.0"/>
     </engines>
 
     <js-module src="www/zhl-plugins-yandex-ads-banner.js" name="YandexAdsBanner">
@@ -27,8 +27,7 @@
                 <param name="android-package" value="dev.zahalski.cordova.plugins.YandexAdsBanner" />
             </feature>
         </config-file>
-        <framework src="com.yandex.android:mobileads:4.5.0" type="aar" />
-        <framework src="com.yandex.android:mobmetricalib:4.0.0" type="aar" />
+        <framework src="com.yandex.android:mobileads:5.8.0" type="aar"/>
 
         <source-file src="src/android/dev/zahalski/cordova/plugins/YandexAdsBanner.java" target-dir="src/dev/zahalski/cordova/plugins"/>
     </platform>

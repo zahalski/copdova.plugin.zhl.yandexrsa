@@ -4,6 +4,7 @@ import com.yandex.mobile.ads.common.InitializationListener;
 import com.yandex.mobile.ads.common.MobileAds;
 import com.yandex.mobile.ads.common.AdRequest;
 import com.yandex.mobile.ads.common.AdRequestError;
+import com.yandex.mobile.ads.common.ImpressionData;
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.PluginResult;
@@ -24,6 +25,8 @@ public class YandexAdsBanner extends CordovaPlugin {
     private static final String EVENT_BANNER_START_LOAD = "bannerStartLoad";
     private static final String EVENT_BANNER_FAILED_TO_LOAD = "bannerFailed";
     private static final String EVENT_BANNER_SHOWN = "bannerShow";
+    private static final String EVENT_BANNER_CLICK = "bannerClick";
+    private static final String EVENT_BANNER_SHOWED = "bannerShowRegistered";
     private static final String EVENT_BANNER_START_SHOWN = "bannerStartShow";
     private static final String EVENT_BANNER_CLOSED = "bannerClose";
     private static final String EVENT_BANNER_OPEN = "bannerOutApp";
@@ -84,7 +87,7 @@ public class YandexAdsBanner extends CordovaPlugin {
         blockId = args.getString(0);
 
         banner = new InterstitialAd(this.cordova.getActivity());
-        banner.setBlockId(blockId);
+        banner.setAdUnitId(blockId);
 
         Log.d(LOG_TAG, EVENT_BANNER_START_LOAD + ", blockId: "+blockId);
 
@@ -123,6 +126,18 @@ public class YandexAdsBanner extends CordovaPlugin {
             public void onReturnedToApplication() {
                 Log.d(LOG_TAG, EVENT_BANNER_RETURN_APP);
                 self.emitWindowEvent(EVENT_BANNER_RETURN_APP, callbackContext);
+            }
+
+            @Override
+			public void onAdClicked() {
+				Log.d(LOG_TAG, EVENT_BANNER_CLICK);
+                self.emitWindowEvent(EVENT_BANNER_CLICK, callbackContext);
+			}
+			
+            @Override
+            public void onImpression(ImpressionData impressionData) {
+                Log.d(LOG_TAG, EVENT_BANNER_SHOWED + ": " + impressionData.getRawData());
+                self.emitWindowEvent(EVENT_BANNER_SHOWED, callbackContext, impressionData.getRawData());
             }
         });
 
@@ -163,6 +178,25 @@ public class YandexAdsBanner extends CordovaPlugin {
                 }catch (JSONException jsonEx){
                     callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.JSON_EXCEPTION, event));
                     webView.loadUrl(String.format("javascript:cordova.fireWindowEvent('YandexAds:%s','%s');", event+"Error", PluginResult.Status.JSON_EXCEPTION));
+                }
+            }
+        });
+    }
+	
+	private void emitWindowEvent(final String event, final CallbackContext callbackContext, final String additionalData) {
+        this.cordova.getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    JSONObject JSONResult = new JSONObject();
+                    JSONResult.put("ok", event);
+
+                    callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, JSONResult));
+                    webView.loadUrl(String.format("javascript:cordova.fireWindowEvent('YandexAds:%s', '%s');", event, additionalData));
+
+                }catch (JSONException jsonEx){
+                    callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.JSON_EXCEPTION, event));
+                    webView.loadUrl(String.format("javascript:cordova.fireWindowEvent('YandexAds:%s', '%s', '%s');", event+"Error", additionalData, PluginResult.Status.JSON_EXCEPTION));
                 }
             }
         });

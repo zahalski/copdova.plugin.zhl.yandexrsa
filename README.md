@@ -48,4 +48,6 @@ $(window).on("YandexAds:bannerLoaded",function(){
 | `YandexAds:bannerClose` |  |
 | `YandexAds:bannerOutApp` |  |
 | `YandexAds:bannerReturnApp` |  |
+| `YandexAds:bannerClick` |  |
+| `YandexAds:bannerShowRegistered` |  |
 

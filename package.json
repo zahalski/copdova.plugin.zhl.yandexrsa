@@ -1,6 +1,6 @@
 {
   "name": "cordova-plugin-zhl-yandex-ads-banner",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Show yandex rsa adv.",
   "cordova": {
     "id": "cordova-plugin-zhl-yandex-ads-banner",
@@ -21,7 +21,7 @@
   "engines": [
     {
       "name": "cordova",
-      "version": ">=10.0.0"
+      "version": ">=12.0.0"
     }
   ],
   "author": "Andrew Zahalski <info@zahalski.dev> (https://zahalski.dev/)",
