@@ -203,7 +203,7 @@ public class YandexAdsBanner extends CordovaPlugin {
 
                 }catch (JSONException jsonEx){
                     callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.JSON_EXCEPTION, event));
-                    webView.loadUrl(String.format("javascript:cordova.fireWindowEvent('YandexAds:%s', '%s', '%s');", event+"Error", PluginResult.Status.JSON_EXCEPTION));
+                    webView.loadUrl(String.format("javascript:cordova.fireWindowEvent('YandexAds:%s', '%s');", event+"Error", PluginResult.Status.JSON_EXCEPTION));
                 }
             }
         });
