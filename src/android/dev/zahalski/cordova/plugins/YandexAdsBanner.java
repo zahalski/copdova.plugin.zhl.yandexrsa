@@ -16,6 +16,7 @@ import org.json.JSONObject;
 import android.util.Log;
 import com.yandex.mobile.ads.interstitial.InterstitialAd;
 import com.yandex.mobile.ads.interstitial.InterstitialAdEventListener;
+import java.util.Objects;
 
 public class YandexAdsBanner extends CordovaPlugin {
 
@@ -136,8 +137,14 @@ public class YandexAdsBanner extends CordovaPlugin {
 			
             @Override
             public void onImpression(ImpressionData impressionData) {
-                Log.d(LOG_TAG, EVENT_BANNER_SHOWED + ": " + impressionData.getRawData());
-                self.emitWindowEvent(EVENT_BANNER_SHOWED, callbackContext, impressionData.getRawData());
+				String sResult = new String();
+				if(Objects.isNull(impressionData)){
+					sResult = "{}";
+				}else{
+					sResult = impressionData.getRawData();
+				}
+                Log.d(LOG_TAG, EVENT_BANNER_SHOWED + ": " + sResult);
+                self.emitWindowEvent(EVENT_BANNER_SHOWED, callbackContext, sResult);
             }
         });
 
@@ -196,7 +203,7 @@ public class YandexAdsBanner extends CordovaPlugin {
 
                 }catch (JSONException jsonEx){
                     callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.JSON_EXCEPTION, event));
-                    webView.loadUrl(String.format("javascript:cordova.fireWindowEvent('YandexAds:%s', '%s', '%s');", event+"Error", additionalData, PluginResult.Status.JSON_EXCEPTION));
+                    webView.loadUrl(String.format("javascript:cordova.fireWindowEvent('YandexAds:%s', '%s', '%s');", event+"Error", PluginResult.Status.JSON_EXCEPTION));
                 }
             }
         });
